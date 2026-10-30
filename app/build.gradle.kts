@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.legacy.kapt) // kapt para el compilador de Room
 }
 
 android {
@@ -36,6 +37,9 @@ android {
 }
 
 
+val room_version = "2.8.4"
+val lifecycle_version = "2.11.0"
+
 dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
@@ -45,6 +49,14 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    // Room
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    // room-ktx para soporte de corrutinas
+    implementation("androidx.room:room-ktx:$room_version")
+    // ViewModel en Compose (la guia usa $room_version, pero es una libreria de lifecycle)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
 
 
     testImplementation(libs.junit)
