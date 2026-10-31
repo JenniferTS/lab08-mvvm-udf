@@ -57,6 +57,7 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
     // ViewModel en Compose (la guia usa $room_version, pero es una libreria de lifecycle)
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
+    implementation("androidx.compose.material:material-icons-core") // iconos
 
 
     testImplementation(libs.junit)
